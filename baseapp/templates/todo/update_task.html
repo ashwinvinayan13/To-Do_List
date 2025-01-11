@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UPdate</title>
+</head>
+<body>
+<form method="post" action="{% url 'Update_task' t_id=data.id  %}">
+     {% csrf_token %}
+    <input type="text" name="task" placeholder="Enter you Tasks" value="{{data.title}}"><br><br>
+    <input type="text" name="des" placeholder="Enter A Description" value="{{data.description}}"><br><br>
+    <label>Mark as complete</label>
+    <input type="checkbox" id="complete" name="complete" {% if d.complete %}checked{% endif %}><br><br>
+    <button type="submit">SUBMIT</button>
+</form>
+</body>
+</html>
