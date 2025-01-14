@@ -77,6 +77,6 @@ def logu(request):
 def register_user(request):
     return render(request, 'todo/Register_user.html')
 
-def logout(request):
+def logout_view(request):
     logout(request)
     return redirect(log_in)
