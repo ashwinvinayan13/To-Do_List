@@ -16,16 +16,16 @@ def task(request):
         task = Taskdb.objects.filter(user=request.user)
         return render(request, 'todo/tasks.html', {'task': task})
     else:
-        return redirect(Log_in)
+        return redirect(log_in)
 
-def Save_task(request):
+def save_task(request):
     if request.method == 'POST':
         tas = request.POST.get('task')
         dec = request.POST.get('des')
         Taskdb.objects.create(user=request.user, title=tas, description=dec)
         return redirect(task)
 
-def Update_task(request, t_id):
+def update_task(request, t_id):
     data = Taskdb.objects.get(id=t_id)
     if request.method == 'POST':
         tas = request.POST.get('task')
@@ -40,7 +40,7 @@ def delete(request, t_id):
     tas.delete()
     return render(request, 'todo/delete.html', {'tas': tas, 'delet': tas})
 
-def Register(request):
+def register_user(request):
     if request.method == 'POST':
         nam = request.POST.get('name')
         pas = request.POST.get('pass')
@@ -50,16 +50,16 @@ def Register(request):
         if pas == cpa:
             user = User.objects.create_user(username=nam, email=ema, password=pas)
             user.save()
-            return redirect(Log_in)
+            return redirect(log_in)
         else:
             return render(request, 'todo/Register_user.html')
     return render(request, 'todo/Register_user.html')
 
 
-def Log_in(request):
+def log_in(request):
     return render(request, 'todo/Login.html')
 
-def Logu(request):
+def logu(request):
     if request.method == 'POST':
         use = request.POST.get('username')
         pas = request.POST.get('password')
@@ -74,9 +74,9 @@ def Logu(request):
 
 
 
-def Reg_User(request):
+def register_user(request):
     return render(request, 'todo/Register_user.html')
 
-def Logout(request):
+def logout(request):
     logout(request)
-    return redirect(Log_in)
+    return redirect(log_in)
